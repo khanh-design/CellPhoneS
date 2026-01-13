@@ -1,0 +1,66 @@
+﻿@model IEnumerable<CPhoneS.Models.KhachHang>
+
+@{
+    ViewData["Title"] = "Danh sách Khách Hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    <a asp-action="Create" class="btn btn-primary" style="background:linear-gradient(195deg,#66bb6a,#43a047);">Thêm Khách Hàng</a>
+</p>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card my-4">
+            <div class="card-body px-0 pb-2">
+                <div class="table-responsive p-0">
+                    <table class="table align-items-center mb-0">
+                        <thead>
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tên Khách Hàng</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ngày Sinh</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Điện Thoại</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Địa Chỉ</th>
+                                <th class="text-secondary opacity-7 text-center">Tác Vụ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">@item.TenKh</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">@item.Ngaysinh.ToString("dd/MM/yyyy")</p>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <span class="text-xs font-weight-bold mb-0">@item.Phone</span>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <span class="text-xs font-weight-bold mb-0">@item.Email</span>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <span class="text-xs font-weight-bold mb-0">@item.Diachi</span>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <!-- Button Edit -->
+                                        <a asp-action="Edit" asp-route-id="@item.MaKh" class="btn btn-sm btn-warning">Chỉnh Sửa</a>
+
+                                        <!-- Button Details -->
+                                        <a asp-action="Details" asp-route-id="@item.MaKh" class="btn btn-sm btn-info">Chi Tiết</a>
+
+                                        <!-- Button Delete -->
+                                        <a asp-action="Delete" asp-route-id="@item.MaKh" class="btn btn-sm btn-danger">Xóa</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

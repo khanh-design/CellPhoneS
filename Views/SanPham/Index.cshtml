@@ -1,0 +1,84 @@
+﻿@model IEnumerable<CPhoneS.Models.SanPham>
+
+@{
+    ViewData["Title"] = "Sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="py-4 bg-light">
+    <div class="container">
+        <div class="row">
+
+            <!-- PRODUCT LIST -->
+            <div class="col-12">
+                <div class="row g-4">
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="card product-card h-100 shadow-sm border-0">
+
+                                <!-- IMAGE -->
+                                <div class="position-relative text-center p-3">
+                                    <img src="@item.AnhSp"
+                                         class="img-fluid"
+                                         style="height:180px; object-fit:contain;"
+                                         alt="@item.TenSp" />
+
+                                    <span class="badge bg-danger position-absolute top-0 start-0 m-2">
+                                        HOT
+                                    </span>
+                                </div>
+
+                                <!-- BODY -->
+                                <div class="card-body text-center">
+
+                                    <h6 class="fw-semibold mb-2 text-truncate">
+                                        <a asp-action="Details"
+                                           asp-route-id="@item.MaSp"
+                                           class="text-decoration-none text-dark">
+                                            @item.TenSp
+                                        </a>
+                                    </h6>
+
+                                    <!-- Rating -->
+                                    <div class="mb-2 text-warning">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+
+                                    <!-- Price -->
+                                    <div class="fw-bold text-danger">
+                                        @item.GiaSp.ToString("N0") ₫
+                                    </div>
+                                </div>
+
+                                <!-- FOOTER -->
+                                <div class="card-footer bg-white border-0 text-center pb-3">
+                                    <a asp-action="Details"
+                                       asp-route-id="@item.MaSp"
+                                       class="btn btn-outline-primary btn-sm w-100">
+                                        Xem chi tiết
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+
+                    @if (!Model.Any())
+                    {
+                        <div class="col-12 text-center text-muted py-5">
+                            Không có sản phẩm nào
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
