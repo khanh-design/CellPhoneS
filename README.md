@@ -51,6 +51,31 @@ Repository: https://github.com/khanh-design/CellPhoneS.git
   </table>
 </div>
 
+<div align="center">
+  <h3>1. Admin Screens</h3>
+
+  <table>
+    <tr>
+      <td align="center">
+        <img src="uploads/screenshots/account_manager_admin.png" width="280"><br/>
+        <sub>Homepage</sub>
+      </td>
+      <td align="center">
+        <img src="uploads/screenshots/category_manager_admin.png" width="280"><br/>
+        <sub>Login</sub>
+      </td>
+      <td align="center">
+        <img src="uploads/screenshots/product_manager_admin.png" width="280"><br/>
+        <sub>Register</sub>
+      </td>
+      <td align="center">
+        <img src="uploads/screenshots/customer_manager_admin.png" width="280"><br/>
+        <sub>Product List</sub>
+      </td>
+    </tr>
+  </table>
+</div>
+
 ## Features
 
 - Server-side rendered UI using ASP.NET Core MVC + Razor Views
