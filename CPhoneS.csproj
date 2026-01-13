@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.10" />
+		<PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.16" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.16">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.16" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.16">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.18" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Areas\Admin\Models\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="wwwroot\images\products\galaxy-a54.jpg" />
+	  <None Include="wwwroot\images\products\galaxy-s23.jpg" />
+	  <None Include="wwwroot\images\products\galaxy-s24-ultra.jpg" />
+	  <None Include="wwwroot\images\products\iphone-14.jpg" />
+	  <None Include="wwwroot\images\products\iphone-15-pro.jpg" />
+	  <None Include="wwwroot\images\products\iphone-15-pro-max.jpg" />
+	  <None Include="wwwroot\images\products\nothing-phone-2.jpg" />
+	  <None Include="wwwroot\images\products\oneplus-12.jpg" />
+	  <None Include="wwwroot\images\products\oppo-a98.jpg" />
+	  <None Include="wwwroot\images\products\oppo-find-x7.jpg" />
+	  <None Include="wwwroot\images\products\oppo-reno-11.jpg" />
+	  <None Include="wwwroot\images\products\pixel-8-pro.jpg" />
+	  <None Include="wwwroot\images\products\redmi-note-13-pro.jpg" />
+	  <None Include="wwwroot\images\products\xiaomi-13t.jpg" />
+	  <None Include="wwwroot\images\products\xiaomi-14-pro.jpg" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,59 @@
+﻿@model List<CPhoneS.Models.CartItem>
+
+<div class="container">
+    <h2>Thanh Toán</h2>
+
+    <!-- Hiển thị thông báo nếu có lỗi -->
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+    }
+
+    <!-- Hiển thị thông tin giỏ hàng -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tên Sản Phẩm</th>
+                <th>Số Lượng</th>
+                <th>Giá</th>
+                <th>Thành Tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Price.ToString("#,##0 VNĐ")</td>
+                    <td>@((item.Price * item.Quantity).ToString("#,##0 VNĐ"))</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3>Tổng tiền: @ViewBag.TotalAmount.ToString("#,##0 VNĐ")</h3>
+
+    <!-- Form để nhập thông tin thanh toán -->
+    <form method="post" action="@Url.Action("ProcessPayment", "Cart")">
+        <div class="form-group">
+            <label for="name">Tên khách hàng:</label>
+            <input type="text" id="name" name="Name" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            <label for="address">Địa chỉ:</label>
+            <input type="text" id="address" name="Address" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            <label for="paymentMethod">Phương thức thanh toán:</label>
+            <select id="paymentMethod" name="PaymentMethod" class="form-control" required>
+                <option value="CreditCard">Thẻ tín dụng</option>
+                <option value="CashOnDelivery">Thanh toán khi nhận hàng</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-success">Thanh Toán</button>
+    </form>
+</div>

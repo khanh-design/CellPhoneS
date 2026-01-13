@@ -1,0 +1,128 @@
+﻿@model CPhoneS.Models.SanPham
+
+@{
+    ViewData["Title"] = Model.TenSp;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var imgMain = Url.Content(Model.AnhSp);
+    var imgFolder = "/images/products/";
+}
+<style>
+    .carousel img {
+        transition: transform .3s ease;
+    }
+
+        .carousel img:hover {
+            transform: scale(1.05);
+        }
+
+    .badge {
+        font-size: 14px;
+    }
+</style>
+
+<section class="product-detail-section py-5 bg-light">
+    <div class="container">
+
+        <!-- ===== TOP: IMAGE + INFO ===== -->
+        <div class="row g-4">
+
+            <!-- IMAGE CAROUSEL -->
+            <div class="col-lg-6">
+                <div id="productCarousel" class="carousel slide shadow-sm bg-white rounded p-3" data-bs-ride="carousel">
+
+                    <div class="carousel-inner text-center">
+
+                        <!-- Ảnh chính -->
+                        <div class="carousel-item active">
+                            <img src="@imgMain"
+                                 class="img-fluid rounded"
+                                 style="max-height:420px; object-fit:contain;">
+                        </div>
+
+                        @* <!-- Ảnh phụ -->
+                        <div class="carousel-item">
+                            <img src="@($"{imgFolder}iphone-15.jpg")"
+                                 class="img-fluid rounded"
+                                 style="max-height:420px; object-fit:contain;">
+                        </div>
+
+                        <div class="carousel-item">
+                            <img src="@($"{imgFolder}iphone-15-pro.jpg")"
+                                 class="img-fluid rounded"
+                                 style="max-height:420px; object-fit:contain;">
+                        </div> *@
+
+                    </div>
+
+                    <!-- Controls -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- INFO -->
+            <div class="col-lg-6">
+                <div class="bg-white shadow-sm rounded p-4 h-100">
+
+                    <span class="badge bg-danger mb-2">🔥 HOT</span>
+
+                    <h2 class="fw-bold mt-2">@Model.TenSp</h2>
+
+                    <div class="fs-3 text-danger fw-bold my-3">
+                        @Model.GiaSp.ToString("#,##0") VNĐ
+                    </div>
+
+                    <p class="text-muted">
+                        @Model.MotaSp?.Substring(0, Math.Min(120, Model.MotaSp.Length))...
+                    </p>
+
+                    <form method="post" action="@Url.Action("AddToCart", "Cart")">
+                        <input type="hidden" name="id" value="@Model.MaSp" />
+
+                        <div class="d-flex align-items-center mb-4">
+                            <label class="me-3 fw-semibold">Số lượng</label>
+                            <input type="number"
+                                   name="quantity"
+                                   class="form-control text-center"
+                                   style="width:100px"
+                                   min="1"
+                                   value="1" />
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            🛒 Mua ngay
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== DESCRIPTION ===== -->
+        <div class="row mt-5">
+            <div class="col-lg-9">
+                <div class="bg-white shadow-sm p-4 rounded">
+                    <h4 class="fw-bold mb-3">Chi tiết sản phẩm</h4>
+                    <p style="line-height:1.8">@Model.MotaSp</p>
+                </div>
+            </div>
+
+            <!-- SEARCH -->
+            <div class="col-lg-3">
+                <div class="bg-white shadow-sm p-4 rounded">
+                    <h5 class="fw-bold mb-3">Tìm kiếm</h5>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Nhập từ khóa...">
+                        <button class="btn btn-outline-secondary">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

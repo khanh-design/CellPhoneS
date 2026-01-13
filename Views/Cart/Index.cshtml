@@ -1,0 +1,113 @@
+﻿@model List<CPhoneS.Models.CartItem>
+
+<div class="container mt-4">
+    <h2 class="text-center">Giỏ Hàng</h2>
+
+    <!-- Hiển thị thông báo thành công hoặc lỗi -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success text-center">@TempData["SuccessMessage"]</div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger text-center">@TempData["ErrorMessage"]</div>
+    }
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-warning text-center">@TempData["Message"]</div>
+    }
+
+    <!-- Kiểm tra nếu giỏ hàng trống -->
+    @if (Model.Count == 0)
+    {
+        <div class="text-center mt-4">
+            <p class="text-muted">Giỏ hàng của bạn hiện đang trống.</p>
+            <a href="@Url.Action("Index", "SanPham")" class="btn btn-primary">Mua sắm ngay</a>
+        </div>
+    }
+    else
+    {
+        <table class="table table-hover mt-4">
+            <thead class="thead-light">
+                <tr>
+                    <th>Hình Ảnh</th>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Giá</th>
+                    <th>Số Lượng</th>
+                    <th>Thành Tiền</th>
+                    <th>Hành Động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="@item.ImageUrl" alt="@item.ProductName" style="width: 80px; height: auto;" class="img-thumbnail" />
+                        </td>
+                        <td>@item.ProductName</td>
+                        <td>@item.Price.ToString("#,##0 VNĐ", new System.Globalization.CultureInfo("vi-VN"))</td>
+                        <td>
+                            <form method="post" action="@Url.Action("UpdateQuantity", "Cart")" class="d-flex">
+                                <input type="number" name="quantity" value="@item.Quantity" min="1" class="form-control form-control-sm w-50 mr-2" />
+                                <input type="hidden" name="id" value="@item.ProductId" />
+                                <button type="submit" class="btn btn-primary btn-sm">Cập Nhật</button>
+                            </form>
+                        </td>
+                        <td>@((item.Price * item.Quantity).ToString("#,##0 VNĐ", new System.Globalization.CultureInfo("vi-VN")))</td>
+                        <td>
+                            <form method="post" action="@Url.Action("RemoveFromCart", "Cart", new { id = item.ProductId })">
+                                <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <!-- Tổng tiền giỏ hàng -->
+        <div class="text-right">
+            <h4>Tổng cộng: <span class="text-danger">@((Model.Sum(item => item.Price * item.Quantity)).ToString("#,##0 VNĐ", new System.Globalization.CultureInfo("vi-VN")))</span></h4>
+        </div>
+
+        <!-- Các nút chức năng -->
+        <div class="d-flex justify-content-between mt-3">
+            <form method="post" action="@Url.Action("ClearCart", "Cart")">
+                <button type="submit" class="btn btn-danger btn-custom">Xóa Giỏ Hàng</button>
+            </form>
+            <a href="@Url.Action("Index", "SanPham")" class="btn btn-primary btn-custom">Tiếp tục mua sắm</a>
+            <form method="get" action="@Url.Action("Checkout", "Cart")">
+                <button type="submit" class="btn btn-success">Thanh Toán</button>
+            </form>
+        </div>
+    }
+</div>
+
+<style>
+    .btn-danger.btn-custom {
+        background-color: #dc3545; 
+        border-color: #dc3545;
+        color: white;
+    }
+
+        .btn-danger.btn-custom:hover {
+            background-color: #c82333; 
+            border-color: #bd2130;
+        }
+
+    .btn-primary.btn-custom {
+        background-color: #007bff; 
+        border-color: #007bff;
+        color: white;
+    }
+
+        .btn-primary.btn-custom:hover {
+            background-color: #0056b3; 
+            border-color: #004085;
+        }
+    .d-flex.justify-content-between a,
+    .d-flex.justify-content-between form {
+        margin: 0 5px;
+    }
+</style>
