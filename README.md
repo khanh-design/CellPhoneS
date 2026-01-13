@@ -51,3 +51,33 @@ Repository: https://github.com/khanh-design/CellPhoneS.git
   </table>
 </div>
 
+## Features
+
+- Server-side rendered UI using ASP.NET Core MVC + Razor Views
+- User authentication (Login / Register / Logout)
+- Session-based shopping cart
+- Order placement and order history
+- Admin management:
+  + Products
+  + Categories
+  + Orders
+- Product detail page with image gallery
+- Google Maps integration for store location
+- Modern responsive UI using Bootstrap 5
+
+
+## Tech Stack
+- ASP.NET Core MVC
+- C#
+- Entity Framework Core
+- SQL Server
+- Razor View Engine
+- Bootstrap 5
+- HTML / CSS / JavaScript
+
+
+## Prerequisites
+- .NET SDK 6.0+ (or version bạn đang dùng)
+- SQL Server
+- Git
+- IDE: Visual Studio 2022 / Rider / VS Code
